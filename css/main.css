@@ -8,16 +8,24 @@
 #calculator{
   width: 20vw;
   height: 35vh;
-  min-width: 150px;
+  min-width: 250px;
   
 }
 
 #display{
   height: 5vh;
-  
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
   background-color:#9C9990;
   opacity: 0.7;
   border: 1px solid white;
+}
+
+#value{
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
 }
 
 #buttons-container{
@@ -35,7 +43,8 @@ button{
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
   opacity: 0.7;
   padding: 0;
