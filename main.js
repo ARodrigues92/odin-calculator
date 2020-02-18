@@ -25,6 +25,16 @@ function clearOperatrions(){
   displayOperation.innerHTML = "";
 }
 
+function clearAll(){
+  currentValue = "";
+  operation = "";
+  operationValues = [];
+  dotStatus = 0;
+  decimals = 0;
+  clearValue();
+  clearOperatrions();
+}
+
 function operate (){
   for (let i=1;i<operationValues.length-1;i+=2){
     if (operationValues[i] === "*"){
@@ -32,9 +42,15 @@ function operate (){
       operationValues.splice(i,2);
       i -= 2;
     }else if (operationValues[i] === "/"){
-      operationValues[i-1] = Math.round((operationValues[i-1] / operationValues[i+1])*10)/10;
-      operationValues.splice(i,2);
-      i -= 2;
+      if(operationValues[i+1] > 0){
+        operationValues[i-1] = Math.round((operationValues[i-1] / operationValues[i+1])*10)/10;
+        operationValues.splice(i,2);
+        i -= 2;
+      }else{
+        clearAll();
+        alert("You can't divide by 0 you dummy!")
+        return;
+      }
     }
   }
   for (i=0;i<operationValues.length;i++){
@@ -96,13 +112,7 @@ dot.addEventListener ("click", () => {
 });
 
 clear.addEventListener ("click", () => {
-  currentValue = "";
-  operation = "";
-  operationValues = [];
-  dotStatus = 0;
-  decimals = 0;
-  clearValue();
-  clearOperatrions();
+  clearAll();
 });
 
 equals.addEventListener ("click", () => {
