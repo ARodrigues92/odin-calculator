@@ -21,6 +21,10 @@ function clearValue(){
   displayValue.innerHTML = "";
 }
 
+function clearOperatrions(){
+  displayOperation.innerHTML = "";
+}
+
 function operate (){
   for (let i=1;i<operationValues.length-1;i+=2){
     if (operationValues[i] === "*"){
@@ -83,7 +87,13 @@ dot.addEventListener ("click", () => {
 });
 
 clear.addEventListener ("click", () => {
-  //console.log(clear.value);
+  currentValue = "";
+  operation = "";
+  operationValues = [];
+  dotStatus = 0;
+  decimals = 0;
+  clearValue();
+  clearOperatrions();
 });
 
 equals.addEventListener ("click", () => {
