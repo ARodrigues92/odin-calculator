@@ -6,6 +6,8 @@ const equals = document.getElementById("equals");
 const clear = document.getElementById("clear");
 const pValue = document.getElementById("value");
 let currentValue = "";
+let dotStatus = 0;
+let decimals = 0;
 
 function display (){
   pValue.innerHTML = currentValue;
@@ -14,7 +16,12 @@ function display (){
 numberButtons.forEach ((button) => {
   button.addEventListener("click",() => {
     console.log(button.value);
-    currentValue += button.value;
+    if (dotStatus === 0 && decimals === 0){
+      currentValue += button.value;
+    }else if(dotStatus === 1 && decimals === 0){
+      currentValue += button.value;
+      decimals = 1;
+    }
     display();
   });
 });
@@ -27,10 +34,16 @@ operatorButtons.forEach ((button) => {
 
 del.addEventListener ("click", () => {
   console.log(del.value);
+  currentValue = currentValue.slice(0, -1);
+  display();
 })
 
 dot.addEventListener ("click", () => {
   console.log(dot.value);
+  if (dotStatus === 0){
+    currentValue += dot.value;
+    dotStatus = 1;
+  }
 })
 
 clear.addEventListener ("click", () => {
