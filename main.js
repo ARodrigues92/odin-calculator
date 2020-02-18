@@ -69,12 +69,20 @@ operatorButtons.forEach ((button) => {
     operationValues.push (parseFloat(currentValue));
     operationValues.push (button.value);
     currentValue = "";
+    dotStatus = 0;
+    decimals = 0;
     display();
     clearValue();
   });
 });
 
 del.addEventListener ("click", () => {
+  if(decimals === 1){
+    decimals = 0;
+  }
+  if (currentValue[currentValue.length-1] === "."){
+    dotStatus = 0;
+  }
   currentValue = currentValue.slice(0, -1);
   display();
 });
@@ -83,6 +91,7 @@ dot.addEventListener ("click", () => {
   if (dotStatus === 0){
     currentValue += dot.value;
     dotStatus = 1;
+    display();
   }
 });
 
