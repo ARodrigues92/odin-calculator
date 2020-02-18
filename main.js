@@ -28,22 +28,22 @@ function clearOperatrions(){
 function operate (){
   for (let i=1;i<operationValues.length-1;i+=2){
     if (operationValues[i] === "*"){
-      operationValues[i-1] = operationValues[i-1] * operationValues[i+1];
+      operationValues[i-1] = Math.round((operationValues[i-1] * operationValues[i+1])*10)/10;
       operationValues.splice(i,2);
       i -= 2;
     }else if (operationValues[i] === "/"){
-      operationValues[i-1] = operationValues[i-1] / operationValues[i+1];
+      operationValues[i-1] = Math.round((operationValues[i-1] / operationValues[i+1])*10)/10;
       operationValues.splice(i,2);
       i -= 2;
     }
   }
   for (i=0;i<operationValues.length;i++){
     if (operationValues[i] === "+"){
-      operationValues[i-1] = operationValues[i-1] + operationValues[i+1];
+      operationValues[i-1] = Math.round((operationValues[i-1] + operationValues[i+1])*10)/10;
       operationValues.splice(i,2);
       i -= 2;
     }else if (operationValues[i] === "-"){
-      operationValues[i-1] = operationValues[i-1] - operationValues[i+1];
+      operationValues[i-1] = Math.round((operationValues[i-1] - operationValues[i+1])*10)/10;
       operationValues.splice(i,2);
       i -= 2;
     }
