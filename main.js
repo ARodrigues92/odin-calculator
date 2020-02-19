@@ -137,7 +137,7 @@ equals.addEventListener ("click", () => {
 
 document.addEventListener('keydown', key => {
   button = document.querySelector(`button[data-code="${event.keyCode}"]`)
-  if (typeof buttton !== "undefine"){
+  if (typeof buttton !== "undefined"){
       button.click();
   }
 });
