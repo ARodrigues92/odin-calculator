@@ -11,6 +11,7 @@ let operation = "";
 let operationValues = [];
 let dotStatus = 0;
 let decimals = 0;
+let result = 0; // used to check if displayed value is a result or introduction by user
 
 function display (){
   displayValue.innerHTML = currentValue;
@@ -69,13 +70,15 @@ function operate (){
 
 numberButtons.forEach ((button) => {
   button.addEventListener("click",() => {
-    if (dotStatus === 0 && decimals === 0){
-      currentValue += button.value;
-    }else if(dotStatus === 1 && decimals === 0){
-      currentValue += button.value;
-      decimals = 1;
+    if(result === 0){
+      if (dotStatus === 0 && decimals === 0){
+        currentValue += button.value;
+      }else if(dotStatus === 1 && decimals === 0){
+        currentValue += button.value;
+        decimals = 1;
+      }
+    display()
     }
-    display();
   });
 });
 
@@ -87,29 +90,34 @@ operatorButtons.forEach ((button) => {
     currentValue = "";
     dotStatus = 0;
     decimals = 0;
+    result = 0;
     display();
     clearValue();
   });
 });
 
 del.addEventListener ("click", () => {
-  if(decimals === 1){
-    decimals = 0;
-  }
-  if (currentValue[currentValue.length-1] === "."){
-    dotStatus = 0;
-  }
-  if(operation.length>0){ //checks if the displayed value is a result or introduction by user
-    currentValue = currentValue.slice(0, -1);
-    display();
+  if(result === 0){
+    if(decimals === 1){
+      decimals = 0;
+    }
+    if (currentValue[currentValue.length-1] === "."){
+      dotStatus = 0;
+    }
+    if(operation.length>0){ //checks if the displayed value is a result or introduction by user
+      currentValue = currentValue.slice(0, -1);
+      display();
+    }
   }
 });
 
 dot.addEventListener ("click", () => {
-  if (dotStatus === 0){
-    currentValue += dot.value;
-    dotStatus = 1;
-    display();
+  if (result === 0){
+    if (dotStatus === 0){
+      currentValue += dot.value;
+      dotStatus = 1;
+      display();
+    }
   }
 });
 
@@ -122,7 +130,7 @@ equals.addEventListener ("click", () => {
   clearValue();
   operate();
   operation = "";
-  dotStatus = 1;
+  result = 1;
   operationValues.pop();
   display();
 });
