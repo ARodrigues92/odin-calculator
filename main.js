@@ -105,10 +105,8 @@ del.addEventListener ("click", () => {
     if (currentValue[currentValue.length-1] === "."){
       dotStatus = 0;
     }
-    if(operation.length>0){ //checks if the displayed value is a result or introduction by user
-      currentValue = currentValue.slice(0, -1);
-      display();
-    }
+    currentValue = currentValue.slice(0, -1);
+    display();
   }
 });
 
@@ -138,7 +136,5 @@ equals.addEventListener ("click", () => {
 
 document.addEventListener('keydown', key => {
   button = document.querySelector(`button[data-code="${event.keyCode}"]`)
-  if (typeof buttton !== "undefined"){
-      button.click();
-  }
+  button.click();
 });
