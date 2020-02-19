@@ -127,3 +127,9 @@ equals.addEventListener ("click", () => {
   display();
 });
 
+document.addEventListener('keydown', key => {
+  button = document.querySelector(`button[data-code="${event.keyCode}"]`)
+  if (typeof buttton !== "undefine"){
+      button.click();
+  }
+});
