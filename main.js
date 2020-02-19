@@ -99,8 +99,10 @@ del.addEventListener ("click", () => {
   if (currentValue[currentValue.length-1] === "."){
     dotStatus = 0;
   }
-  currentValue = currentValue.slice(0, -1);
-  display();
+  if(operation.length>0){ //checks if the displayed value is a result or introduction by user
+    currentValue = currentValue.slice(0, -1);
+    display();
+  }
 });
 
 dot.addEventListener ("click", () => {
@@ -120,6 +122,7 @@ equals.addEventListener ("click", () => {
   clearValue();
   operate();
   operation = "";
+  dotStatus = 1;
   operationValues.pop();
   display();
 });
