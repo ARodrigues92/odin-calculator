@@ -30,6 +30,7 @@ function clearAll(){
   currentValue = "";
   operation = "";
   operationValues = [];
+  result = 0;
   dotStatus = 0;
   decimals = 0;
   clearValue();
